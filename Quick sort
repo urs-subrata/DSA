@@ -1,0 +1,50 @@
+#include<stdio.h>
+int split(int a[],int lb,int ub){
+    int p,q,tmp;
+    p=lb+1;
+    q=ub;
+    while(q>=p){
+        while(a[q]>=a[lb]&& q>=p){
+            q--;
+        }
+        while(a[p]<=a[lb] && p<=ub){
+            p++;
+        }
+        if(q>p){
+            tmp=a[q];
+            a[q]=a[p];
+            a[p]=tmp;
+        }
+        else{
+            tmp=a[lb];
+            a[lb]=a[q];
+            a[q]=tmp;
+        }
+    }
+    return q;
+}
+void qs(int a[],int lb, int ub){
+    int q;
+    if(lb<ub){
+    q=split(a,lb,ub);
+    qs(a,lb,q-1);
+    qs(a,q+1,ub);
+    }
+}
+int main(){
+    int i,n,lb,ub;
+    printf("Enter the data:");
+    scanf("%d",&n);
+    int a[n];
+    printf("enter the element:");
+    for(i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+    lb=0;
+    ub=n-1;
+    qs(a,lb,ub);
+    printf("sorted array:");
+    for(i=0;i<n;i++){
+        printf("%d\n",a[i]);
+    }
+    return 0;
