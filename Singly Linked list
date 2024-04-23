@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+//define a structure for a node in the linked list
+struct node{
+    int data;//data stored in the node
+    struct node *link; //pointer to the next node in the list
+};
+//function prototype
+void append(struct node **q);//function to append a node to the list
+void display(struct node *q);//function to display
+int main(){
+    int ch;
+    struct node *ptr;
+    ptr=NULL;// taking the list as empty
+    
+    //main menu loop
+    while(1){
+        printf("enter choice:");
+        scanf("%d",&ch);
+        switch(ch){
+            case 1: append(&ptr); //call the append function to add the node
+            break;
+            case 2: display(ptr); //call the display function to show the list
+            break;
+            case 3:exit(0);  // exit the program
+        
+        } 
+
+    }
+    return 0;
+}
+void append(struct node **q){
+    struct node *temp,*r;
+    int d;
+    printf("enter the data:\n");
+    scanf("%d",&d);
+    //if the list is empty then create a new node and make it the head of the list
+    if(*q == NULL){
+        temp=(struct node*)malloc(sizeof(struct node));
+        temp->data=d;
+        temp->link=NULL;
+        (*q)=temp;
+    }
+    else{//if the list is not empty,find the end  and append a new node
+        r=*q;
+        while(r->link!=NULL){
+            r=r->link;
+        }
+        temp=(struct node*)malloc(sizeof(struct node));
+        temp->data=d;
+        temp->link= NULL;
+        r->link=temp;
+    }
+}
+void display(struct node *q){
+    struct node*temp;
+    //traverse the display each node's data
+    while(temp!=NULL){
+        
+        printf("%d--",temp->data);
+        temp=temp->link;
+    }
+}
