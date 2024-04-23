@@ -1,0 +1,51 @@
+#include<stdio.h>
+#include<stdlib.h>
+void pop();
+void push();
+void display();
+int i,n,s[10],top=-1;
+int main(){
+    int ch;
+    printf("enter the size of the stack:");
+    scanf("%d",&n);
+    while(1){
+        printf("enter your choice:");
+        scanf("%d",&ch);
+        switch(ch){
+            case 1:push();
+            break;
+            case 2:pop();
+            break;
+            case 3:display();
+            break;
+            default:exit(1);
+        }
+    }
+}
+void push(){
+    int d;
+    printf("enter the element into the stack:");
+    scanf("%d",&d);
+    if(top==n-1){
+        printf("overflow\n");
+    }
+    else{
+        top=top+1;
+        s[top]=d;
+    }
+}
+void pop(){
+    int d;
+    if(top<0){
+        printf("under flow\n");
+    }
+    else{
+        d=s[top];
+        top=top-1;
+    }
+}
+void display(){
+    for(i=0;i<=top;i++){
+        printf("%d\n",s[i]);
+    }
+}
