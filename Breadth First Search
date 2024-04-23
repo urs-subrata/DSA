@@ -1,0 +1,49 @@
+/*code by Alok sir*/
+#include<stdio.h>
+#include<stdlib.h>
+int q[10],front=0,rear=-1;
+int adj[10][10];
+int visited[10];
+void enqueue(int d){
+    rear++;
+    q[rear]=d;
+}
+int qdel(){
+int d;
+d=q[front];
+front++;
+printf("%d",d);
+return d;
+}
+int main(){
+    int st,i,d,n;
+    printf("enter the total no.of vertex:");
+    scanf("%d",&n);
+    printf("enter the adjacency matrix:");
+    for(i=0;i<n;i++){
+        for(int j=0;j<n;j++){
+            scanf("%d",&adj[i][j]);
+        }
+    }
+    printf("enter the starting vertex:");
+    scanf("%d",&st);
+    enqueue(st);
+    visited[st]=1;
+    d=qdel();
+    for(i=0;i<n;i++){
+        if(adj[st][i]==1&& visited[i]==0){
+            enqueue(i);
+            visited[i]=1;
+        }
+    }
+    while(front<=rear){
+        d=qdel();
+        for(i=0;i<n;i++){
+            if(adj[d][i]==1&&visited[i]==0){
+                enqueue(i);
+                visited[i]=1;
+            }
+        }
+    }
+    return 0;
+}
