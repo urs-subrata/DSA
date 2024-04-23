@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main(){
+    int i=0,n,item,temp=0,mid,lb,ub;
+    printf("enter the size of the array:");
+    scanf("%d",&n);
+    int a[n];
+    printf("enter the element into the array:");
+    while(i<n){
+        scanf("%d",&a[i]);
+        i++;
+    }
+    printf("Enter the item you want to search:");
+    scanf("%d",&item);
+    lb=0;ub=n-1;
+    while(lb<=ub){
+        mid=(lb+ub)/2;
+        if(item==a[mid]){
+            temp=1;
+            break;
+        }
+        else{
+            if(item>a[mid]){
+                lb=mid+1;
+            }
+            else{
+                ub=mid-1;
+            }
+        }
+    }
+    if(temp==0){
+        printf("not found");
+    }
+    else{
+        printf("found");
+    }
+    return 0;
