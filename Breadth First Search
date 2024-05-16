@@ -1,4 +1,4 @@
-/*code by Alok sir*/
+
 #include<stdio.h>
 #include<stdlib.h>
 int q[10],front=0,rear=-1;
